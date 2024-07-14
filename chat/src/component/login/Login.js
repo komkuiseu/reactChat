@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "../login/Login.css"
 import { toast } from 'react-toastify'
-import {createUserWithEmailAndPassword ,signInWithEmailAndPassword} from "firebase/auth"
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 import {auth, db} from "../lib/firebase"
 import { doc, setDoc } from "firebase/firestore"; 
 
@@ -63,7 +63,7 @@ await setDoc(doc(db, "users", res.user.uid), {
 
 
 const handleLogin = async (e)=>{
-    e.preventDefault()
+    e.preventDefault();
 
     setloading(true)
     const formData = new FormData(e.target);
@@ -71,7 +71,7 @@ const handleLogin = async (e)=>{
 
 try {
     
-await signInWithEmailAndPassword(auth,email,password)
+await signInWithEmailAndPassword (auth,email,password);
 
 } catch (error) {
     console.log(error);
@@ -89,9 +89,10 @@ await signInWithEmailAndPassword(auth,email,password)
        <div className="item">
         <h2>welcome back ,</h2>
 
-        <form action="" onSubmit={handleLogin}>
-            <input type="email" name="email" id="" placeholder='email' />
-            <input type="password" name="password" id="" placeholder='password' />
+        <form  
+         onSubmit={handleLogin}>
+            <input type="email" name="email" id="" placeholder='email' autoComplete='off' />
+            <input type="password" name="password" id="" placeholder='password'  autoComplete='off'/>
             <button className='b
             h-btnn' disabled={loading}> {loading ? "loading" :"sign In" }</button>
         </form>
@@ -103,16 +104,17 @@ await signInWithEmailAndPassword(auth,email,password)
             <h2>
                 create an account ..
             </h2>
-            <form action=""  onSubmit={handleRegister}  >
+            <form 
+              onSubmit={handleRegister}  >
                 <img src="" alt="" />
                    <label htmlFor="file">
                      <img src={avatar.url || "./avatar.png"} alt="" />
                      Upload an image
                     </label>
-                    <input type="file" name="" id="file" style={{display:"none"}}  onChange={handleAvatar} />
-                    <input type="text" name="username" id="" placeholder='username' />
-                    <input type="email" name="email" id="" placeholder='email' />
-                    <input type="password" name="password" id="" placeholder='password' />
+                    <input type="file" name="" id="file" style={{display:"none"}}   onChange={handleAvatar} />
+                    <input type="text" name="username" id="" placeholder='username'   autoComplete='off' />
+                    <input type="email" name="email" id="" placeholder='email'  autoComplete='off'/>
+                    <input type="password" name="password" id="" placeholder='password'  autoComplete='off' />
                     <button className='h-btnn' disabled={loading}> {loading ? "loading" :"sign Up" }</button>
                 </form>
        </div>
